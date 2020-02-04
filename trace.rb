@@ -1,6 +1,6 @@
 require 'pry'
 
-@@call_history = []
+@call_history = []
 
 set_trace_func proc { |event, file, line, id, trace_binding, classname|
   begin
@@ -10,10 +10,10 @@ set_trace_func proc { |event, file, line, id, trace_binding, classname|
   rescue TypeError
     args = []
   end
-  @@call_history.push("#{classname}##{id} called with #{args}") if event == 'call'
+  @call_history.push("#{classname}##{id} called with #{args}") if event == 'call'
 }
 
-def b(d:, e:)
+def b(d, e)
   puts "b"
 end
 
@@ -29,4 +29,4 @@ end
 
 a
 
-puts @@call_history
+puts @call_history
